@@ -2,8 +2,8 @@ import slice from './slice.js'
 import toInteger from './toInteger.js'
 
 /**
- * Creates an array of elements split into groups the length of `size`.
- * If `array` can't be split evenly, the final chunk will be the remaining
+ * Creates an array of elements split into groups the length of size.
+ * If array can't be split evenly, the final chunk will be the remaining
  * elements.
  *
  * @since 3.0.0

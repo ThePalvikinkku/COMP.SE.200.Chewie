@@ -12,15 +12,14 @@
  * // => [1, 2, 3]
  */
 function compact(array) {
-  let resIndex = -1
-  const result = []
+  const result = [];
 
   for (const value of array) {
     if (value) {
-      result[resIndex++] = value
+      result.push(value); // Use `push` to add valid values to the result
     }
   }
-  return result
+  return result;
 }
 
 export default compact

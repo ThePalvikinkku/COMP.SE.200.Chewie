@@ -25,7 +25,7 @@ const camelCase = (string) => (
   words(toString(string).replace(/['\u2019]/g, '')).reduce((result, word, index) => {
     word = word.toLowerCase()
     return result + (index ? upperFirst(word) : word)
-  }, ' ')
+  }, '') //Took the empty space, as it intervened with test results
 )
 
 export default camelCase
