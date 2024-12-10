@@ -1,18 +1,36 @@
 {
   "name": "software-testing-assignment",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a project template for students participating in Software Testing course\r at Tampere University.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha \"tests/**/*.js\""
+    "test": "mocha tests/**/*.js",
+    "coverage": "c8 --reporter=text --reporter=lcov mocha tests/**/*.js",
+    "coverage-report": "open coverage/lcov-report/index.html",
+    "report-coveralls": "cat coverage/lcov.info | coveralls"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "c8": "^10.1.2",
     "chai": "^5.1.2",
     "coveralls": "^3.1.1",
     "mocha": "^11.0.1",
-    "mocha-lcov-reporter": "^1.3.0"
-  }
+    "mocha-lcov-reporter": "^1.3.0",
+    "mochawesome": "^7.1.3",
+    "nyc": "^17.1.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThePalvikinkku/COMP.SE.200.Chewie.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/ThePalvikinkku/COMP.SE.200.Chewie/issues"
+  },
+  "homepage": "https://github.com/ThePalvikinkku/COMP.SE.200.Chewie#readme"
 }

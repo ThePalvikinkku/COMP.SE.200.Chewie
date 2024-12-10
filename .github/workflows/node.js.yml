@@ -9,35 +9,32 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16
         cache: 'npm'
-
-    # Installing dependencies
     - run: npm ci
+    - run: npm test
 
-    # Build
-    - run: npm run build --if-present
+  coverage:
+    runs-on: ubuntu-latest
 
-    # Run tests and generate coverage, so we can upload them into Coveralls.
-    - name: Run tests with coverage
-      run: npm test -- --coverage
-
-    # Coveralls upload command
-    - name: Upload coverage to Coveralls
-      run: npx coveralls < ./coverage/lcov.info
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 16
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run coverage
+    - name: Send Coverage to Coveralls
+      run: npm run report-coveralls
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.tRXH0Iuwz1jLza2uSnU6RFjJe1VXDg93U }}
