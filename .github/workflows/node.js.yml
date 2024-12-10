@@ -37,4 +37,4 @@ jobs:
     - name: Send Coverage to Coveralls
       run: npm run report-coveralls
       env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.tRXH0Iuwz1jLza2uSnU6RFjJe1VXDg93U }}
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
