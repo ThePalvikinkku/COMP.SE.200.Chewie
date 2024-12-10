@@ -12,8 +12,6 @@ Source code folder contains a separate license file that must **NOT** be removed
 Removing this license file directly violates terms and conditions of the software under testing.
 Individuals who remove or modify the license file will also carry the consequences.
 
-##
-
-Made by Niko & Mangi 2024
+## Made by Niko & Mangi 2024
 
 [![Coverage Status](https://coveralls.io/repos/github/ThePalvikinkku/COMP.SE.200.Chewie/badge.svg?branch=main)](https://coveralls.io/github/ThePalvikinkku/COMP.SE.200.Chewie?branch=main)
