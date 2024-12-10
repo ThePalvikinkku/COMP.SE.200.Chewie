@@ -29,14 +29,14 @@ jobs:
     # Installing dependencies
     - run: npm ci
 
-    # Build the project (if applicable)
+    # Build
     - run: npm run build --if-present
 
-    # Run tests and generate coverage
+    # Run tests and generate coverage, so we can upload them into Coveralls.
     - name: Run tests with coverage
       run: npm test -- --coverage
 
-    # Upload coverage to Coveralls
+    # Coveralls upload command
     - name: Upload coverage to Coveralls
       run: npx coveralls < ./coverage/lcov.info
       env:
