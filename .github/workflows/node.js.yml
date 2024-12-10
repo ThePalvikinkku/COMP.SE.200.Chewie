@@ -9,33 +9,35 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  build:
+    name: Build and Test Coverage
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 16
-        cache: 'npm'
-    - run: npm ci
-    - run: npm test
+      # Step 1: Checkout the code
+      - uses: actions/checkout@v4
 
-  coverage:
-    runs-on: ubuntu-latest
+      # Step 2: Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 16
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run coverage
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        parallel-finished: true
+      # Step 3: Install dependencies and generate coverage
+      - name: Install Dependencies and Run Coverage
+        run: |
+          npm ci
+          npm run coverage # Ensure this generates `coverage/lcov.info`
+
+      # Step 4: Debug to ensure coverage file exists
+      - name: List Coverage Files
+        run: |
+          ls -l coverage
+          cat coverage/lcov.info
+
+      # Step 5: Upload coverage to Coveralls
+      - name: Upload to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: coverage/lcov.info
